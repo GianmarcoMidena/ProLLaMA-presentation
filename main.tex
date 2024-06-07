@@ -1,0 +1,60 @@
+\documentclass[dvipsnames]{beamer}
+\beamertemplatenavigationsymbolsempty
+\usetheme{Boadilla}
+\usefonttheme[onlymath]{serif}
+
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage[cal=boondoxo]{mathalpha}
+
+% Change horizontal spacing
+\setlength{\tabcolsep}{3pt}
+
+\usepackage[none]{hyphenat} % no hyphenation
+
+\usepackage{array}
+
+\usepackage{cancel}
+
+\usepackage[style=authoryear,maxcitenames=2,backend=biber,citetracker=true]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{verbatim}
+
+\usepackage{bigints}
+
+\newcommand{\credit}[2]{\par\hfill \footnotesize #1 credit:~\itshape\citeauthor{#2} (\citeyear{#2})}
+\renewcommand{\cite}[1]{(\citeauthor{#1}, \citeyear{#1})}
+\newcommand{\citefoot}[1]{\citeauthor{#1} (\citeyear{#1})}
+\newcommand{\matr}[1]{#1}
+
+\newcommand{\red}[1]{{\color{red} #1}}
+
+\title[ProLLaMA]
+{ProLLaMA: A Protein Large Language Model for Multi-Task Protein Language Processing}
+%\subtitle{}
+\author[Liuzhenghao Lv et al.]{Lv, Liuzhenghao, Zongying Lin, Hao Li, Yuyang Liu, Jiaxi Cui, Calvin Yu-Chian Chen, Li Yuan, and Yonghong Tian
+\\\vspace{2em}Presenter: Gianmarco Midena}
+%\institute{Aalto University}
+\date[3 July 2024]{Submission: 26 February 2024 
+\\\vspace{2em}3 July 2024}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+%\begin{frame}{Outline}
+%\tableofcontents
+%\end{frame}
+
+\section{References}
+\begin{frame}[allowframebreaks]
+\frametitle{References}
+\printbibliography
+\end{frame}
+
+\end{document}
