@@ -1,7 +1,12 @@
-\documentclass[dvipsnames]{beamer}
+\documentclass[dvipsnames,
+%xcolor={svgnames},
+hyperref={colorlinks,citecolor=black}
+]{beamer}
 \beamertemplatenavigationsymbolsempty
 \usetheme{Boadilla}
 \usefonttheme[onlymath]{serif}
+
+\usepackage{cleveref}
 
 \usepackage{amsmath}
 \usepackage{bm}
@@ -26,7 +31,24 @@
 
 \usepackage{bigints}
 
-\newcommand{\credit}[2]{\par\hfill \footnotesize #1 credit:~\itshape\citeauthor{#2} (\citeyear{#2})}
+\DeclareCiteCommand{\citeauthor}
+{\boolfalse{citetracker}%
+	\boolfalse{pagetracker}%
+	\usebibmacro{prenote}}
+{\ifciteindex
+	{\indexnames{labelname}}
+	{}%
+	\printtext[bibhyperref]{\printnames{labelname}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\citeyear}
+{\usebibmacro{prenote}}
+{\bibhyperref{\printfield{year}}\bibhyperref{\printfield{extrayear}}}
+{\multicitedelim}
+{\usebibmacro{postnote}}
+
+\newcommand{\credit}[2]{\par\hfill \tiny #1 credit:~\itshape\citeauthor{#2} (\citeyear{#2})}
 \renewcommand{\cite}[1]{(\citeauthor{#1}, \citeyear{#1})}
 \newcommand{\citefoot}[1]{\citeauthor{#1} (\citeyear{#1})}
 \newcommand{\matr}[1]{#1}
@@ -34,7 +56,7 @@
 \newcommand{\red}[1]{{\color{red} #1}}
 
 \title[ProLLaMA]
-{ProLLaMA: A Protein Large Language Model for Multi-Task Protein Language Processing}
+{\href{https://doi.org/10.48550/arXiv.2402.16445}{ProLLaMA: A Protein Large Language Model for Multi-Task Protein Language Processing}}
 %\subtitle{}
 \author[Liuzhenghao Lv et al.]{Lv, Liuzhenghao, Zongying Lin, Hao Li, Yuyang Liu, Jiaxi Cui, Calvin Yu-Chian Chen, Li Yuan, and Yonghong Tian
 \\\vspace{2em}Presenter: Gianmarco Midena}
@@ -47,37 +69,66 @@
 \titlepage
 \end{frame}
 
+%\begin{frame}{Outline}
+%\tableofcontents
+%\end{frame}
+
 \begin{frame}{Multi-task LLMs for Natural vs. Protein Language}
 	\begin{center}
 		\includegraphics[scale=0.5]{images/multitask_LLMs_NLP_vs_PLP.pdf}
 	\end{center}
+	\credit{Image}{lv2024prollama}
 \end{frame}
 
 \begin{frame}{Model}
 	\begin{center}
 		\includegraphics[scale=0.44]{images/model.pdf}
 	\end{center}
+	\credit{Image}{lv2024prollama}
 \end{frame}
 
 \begin{frame}{Learning Stages}
 	\begin{center}
 		\includegraphics[scale=0.39]{images/training.pdf}
 	\end{center}
+	\credit{Image}{lv2024prollama}
 \end{frame}
 
-\begin{frame}{Performance in Protein Generation}
+\begin{frame}{Evaluation Metrics}
+	\begin{itemize}
+		\item structural plausibility of a sequence
+		\begin{itemize}
+			\item \textbf{pLDDT}: Local Distance Difference Test~\cite{jumper2021highly}
+			\begin{itemize}
+				\item \red{unreliable with Intrinsically Disordered Regions (IDRs)}
+			\end{itemize}
+			\item \textbf{SC-Perp}: Self-Consistency Perplexity~\cite{alamdari2023protein}
+		\end{itemize}
+		\item structural similarity between generated and known sequences
+		\begin{itemize}
+			\item \textbf{TM-score}: Template Modeling score~\cite{zhang2004scoring}
+			\item \textbf{RMSD}:  Root-Mean-Square Deviation
+			\begin{itemize}
+				\item atomic distance
+			\end{itemize}
+		\end{itemize}
+		\item Homologous Probability (\textbf{H-Prob}): probability that a generated protein is homologous to a known one
+		\item Sequence Identity (\textbf{Seq-Ident}): sequence similarity between generated sequences and known ones
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Reference Protein Databases}
+	\begin{itemize}
+		\item AFDB~\cite{varadi2022alphafold}
+		\item PDB~\cite{berman2002protein}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Performance in (Unconditional) Protein Generation}
 	\begin{center}
 		\includegraphics[scale=0.21]{tables/methods_comparison.png}
 	\end{center}
-	\begin{itemize}
-		\item Metrics
-		\begin{itemize}
-			\item pLDDT
-			\item SC-Perp
-			\item TM-score
-			\item RMSD
-		\end{itemize}
-	\end{itemize}
+	\credit{Table}{lv2024prollama}
 \end{frame}
 
 \begin{frame}{Controllable Generation on Four Different Instructions}
@@ -87,23 +138,25 @@
 	\begin{itemize}
 		\item Given one instruction, \\ProLLaMA generates proteins with the desired functionalities
 		\item High metrics mean proteins meet instructions
-		\item Uncontrollable generation of other models
-		\item Instructions
+		\item Other models: uncontrollable generation
+		\item Instructions: four superfamily descriptions
 		\begin{itemize}
-			\item SAM-MT
-			\item TPHD
-			\item Trx
-			\item CheY
+			\item SAM-MT: S-adenosyl-L-methionine-dependent methyltransferase
+			\item TPHD: Tetratricopeptide-like helical domain
+			\item Trx: Thioredoxin-like 
+			\item CheY: CheY-like
 		\end{itemize}
 	\end{itemize}
+	\credit{Table}{lv2024prollama}
 \end{frame}
 
-\begin{frame}{ProLLaMA vs. ESM2 Model (Baseline)}
+\begin{frame}{ProLLaMA vs. ESM2 (Baseline) Model}
 	\begin{center}
 		\includegraphics[scale=0.23]{images/combined_length_plddt_zhexiantu.pdf}
 		\includegraphics[scale=0.23]{images/combined_length_scperp_zhexiantu.pdf}
 		\includegraphics[scale=0.23]{images/combined_length_alntmscore_zhexiantu.pdf}
 	\end{center}
+	\vspace{-1.4em}\credit{Image}{lv2024prollama}
 \end{frame}
 
 \begin{frame}{Generated vs. Natural Protein}
@@ -112,6 +165,7 @@
 		\includegraphics[scale=0.7]{images/e.png}
 		\includegraphics[scale=0.7]{images/f.png}
 	\end{center}
+	\credit{Image}{lv2024prollama}
 \end{frame}
 
 \begin{frame}{Performance in Protein Property Prediction}
@@ -130,6 +184,7 @@
 			CheY     & 100 \\\hline
 		\end{tabular}
 	\end{center}
+	\credit{Table}{lv2024prollama}
 \end{frame}
 
 \begin{frame}{Protein Visualization}
@@ -139,6 +194,7 @@
 		\includegraphics[trim={64em 0 30em 0},clip,scale=0.4]{images/protein_visualization.pdf}
 		\includegraphics[trim={92em 0 0 0},clip,scale=0.4]{images/protein_visualization.pdf}
 	\end{center}
+	\credit{Image}{lv2024prollama}
 \end{frame}
 
 \begin{frame}{Sequences Generated w/o Instructions - Distributions}
@@ -149,22 +205,20 @@
 	\begin{itemize}
 		\item 1 spot = 1 sequence
 	\end{itemize}
+	\credit{Image}{lv2024prollama}
 \end{frame}
 
 \begin{frame}{Natural Language Ability}
 	\begin{center}
 		\includegraphics[scale=0.21]{tables/natural_language_ability_comparison.png}
 	\end{center}
+	\credit{Table}{lv2024prollama}
 \end{frame}
 
-%\begin{frame}{Outline}
-%\tableofcontents
-%\end{frame}
-
-%\section{References}
-%\begin{frame}[allowframebreaks]
-%\frametitle{References}
-%\printbibliography
-%\end{frame}
+\section{References}
+\begin{frame}[allowframebreaks]
+\frametitle{References}
+\printbibliography
+\end{frame}
 
 \end{document}
