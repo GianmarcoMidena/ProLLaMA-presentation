@@ -1,6 +1,6 @@
 \documentclass[dvipsnames,
 %xcolor={svgnames},
-hyperref={colorlinks,citecolor=black}
+hyperref={citecolor=black}
 ]{beamer}
 \beamertemplatenavigationsymbolsempty
 \usetheme{Boadilla}
@@ -48,7 +48,7 @@ hyperref={colorlinks,citecolor=black}
 {\multicitedelim}
 {\usebibmacro{postnote}}
 
-\newcommand{\credit}[2]{\par\hfill \tiny #1 credit:~\itshape\citeauthor{#2} (\citeyear{#2})}
+\newcommand{\credit}[2]{{\par\hfill \tiny #1 credit:~\itshape\citeauthor{#2} (\citeyear{#2})}}
 \renewcommand{\cite}[1]{(\citeauthor{#1}, \citeyear{#1})}
 \newcommand{\citefoot}[1]{\citeauthor{#1} (\citeyear{#1})}
 \newcommand{\matr}[1]{#1}
@@ -136,6 +136,7 @@ hyperref={colorlinks,citecolor=black}
 	\begin{center}
 		\includegraphics[scale=0.21]{tables/controlled_generation_comparison.png}
 	\end{center}
+	\vspace{-1em}\credit{Table}{lv2024prollama}
 	\begin{itemize}
 		\item Given one instruction, \\ProLLaMA generates proteins with the desired functionalities
 		\item High metrics mean proteins meet instructions
@@ -149,7 +150,6 @@ hyperref={colorlinks,citecolor=black}
 			\item CheY: CheY-like
 		\end{itemize}
 	\end{itemize}
-	\credit{Table}{lv2024prollama}
 \end{frame}
 
 \begin{frame}{Quality of Generated Protein w.r.t. Length}%ProLLaMA vs. ESM2 (Baseline) Model}
@@ -158,7 +158,7 @@ hyperref={colorlinks,citecolor=black}
 		\includegraphics[scale=0.23]{images/combined_length_scperp_zhexiantu.pdf}
 		\includegraphics[scale=0.23]{images/combined_length_alntmscore_zhexiantu.pdf}
 	\end{center}
-	\vspace{-1.4em}\credit{Image}{lv2024prollama}
+	\vspace{-2em}\credit{Image}{lv2024prollama}
 \end{frame}
 
 \begin{frame}{Generated vs. Natural Protein}
@@ -199,7 +199,7 @@ hyperref={colorlinks,citecolor=black}
 		\includegraphics[trim={64em 0 30em 0},clip,scale=0.4]{images/protein_visualization.pdf}
 		\includegraphics[trim={92em 0 0 0},clip,scale=0.4]{images/protein_visualization.pdf}
 	\end{center}
-	\credit{Image}{lv2024prollama}
+	\vspace{-1em}\credit{Image}{lv2024prollama}
 	\begin{itemize}
 		\item Blue: generated proteins, yellow: natural proteins
 		\item Similar in structure (function), different in sequence
@@ -211,10 +211,10 @@ hyperref={colorlinks,citecolor=black}
 		\includegraphics[scale=0.35]{images/plddt_scperp.pdf}
 		\includegraphics[scale=0.35]{images/tm_sid.pdf}
 	\end{center}
+	\credit{Image}{lv2024prollama}
 	\begin{itemize}
 		\item 1 spot = 1 sequence
 	\end{itemize}
-	\credit{Image}{lv2024prollama}
 \end{frame}
 
 \begin{frame}{Natural Language Ability}
