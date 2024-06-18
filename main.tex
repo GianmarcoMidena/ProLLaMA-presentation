@@ -113,6 +113,7 @@ hyperref={colorlinks,citecolor=black}
 			\end{itemize}
 		\end{itemize}
 		\item Homologous Probability (\textbf{H-Prob}): probability that a generated protein is homologous to a known one
+		%What does homology mean?
 		\item Sequence Identity (\textbf{Seq-Ident}): sequence similarity between generated sequences and known ones
 	\end{itemize}
 \end{frame}
@@ -140,6 +141,7 @@ hyperref={colorlinks,citecolor=black}
 		\item High metrics mean proteins meet instructions
 		\item Other models: uncontrollable generation
 		\item Instructions: four superfamily descriptions
+		%What do superfamilies are?
 		\begin{itemize}
 			\item SAM-MT: S-adenosyl-L-methionine-dependent methyltransferase
 			\item TPHD: Tetratricopeptide-like helical domain
@@ -150,7 +152,7 @@ hyperref={colorlinks,citecolor=black}
 	\credit{Table}{lv2024prollama}
 \end{frame}
 
-\begin{frame}{ProLLaMA vs. ESM2 (Baseline) Model}
+\begin{frame}{Quality of Generated Protein w.r.t. Length}%ProLLaMA vs. ESM2 (Baseline) Model}
 	\begin{center}
 		\includegraphics[scale=0.23]{images/combined_length_plddt_zhexiantu.pdf}
 		\includegraphics[scale=0.23]{images/combined_length_scperp_zhexiantu.pdf}
@@ -185,9 +187,12 @@ hyperref={colorlinks,citecolor=black}
 		\end{tabular}
 	\end{center}
 	\credit{Table}{lv2024prollama}
+	\begin{itemize}
+		\item Property = superfamily
+	\end{itemize}
 \end{frame}
 
-\begin{frame}{Protein Visualization}
+\begin{frame}{Visualization of Controllable Generated vs. Natural Proteins}
 	\begin{center}
 		\includegraphics[trim={0 0 90em 0},clip,scale=0.4]{images/protein_visualization.pdf}
 		\includegraphics[trim={31.5em 0 57.4em 0},clip,scale=0.4]{images/protein_visualization.pdf}
@@ -195,6 +200,10 @@ hyperref={colorlinks,citecolor=black}
 		\includegraphics[trim={92em 0 0 0},clip,scale=0.4]{images/protein_visualization.pdf}
 	\end{center}
 	\credit{Image}{lv2024prollama}
+	\begin{itemize}
+		\item Blue: generated proteins, yellow: natural proteins
+		\item Similar in structure (function), different in sequence
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Sequences Generated w/o Instructions - Distributions}
@@ -213,6 +222,23 @@ hyperref={colorlinks,citecolor=black}
 		\includegraphics[scale=0.21]{tables/natural_language_ability_comparison.png}
 	\end{center}
 	\credit{Table}{lv2024prollama}
+	\begin{itemize}
+		\item Sentence generation on Wikipedia text
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Summary}
+	\begin{itemize}
+		\item Efficient training framework
+		\item Can transform any general LLM into a multi-task ProLLM
+		\item Versatility
+		\begin{itemize}
+			\item Unconditional protein generation
+			\item Controllable protein generation
+			\item Protein property prediction
+		\end{itemize}
+		\item Exceptional performances
+	\end{itemize}
 \end{frame}
 
 \section{References}
