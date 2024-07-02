@@ -1,6 +1,6 @@
 \documentclass[dvipsnames,
 %xcolor={svgnames},
-hyperref={citecolor=black}
+hyperref={citecolor=blue}
 ]{beamer}
 \beamertemplatenavigationsymbolsempty
 \usetheme{Boadilla}
@@ -31,6 +31,8 @@ hyperref={citecolor=black}
 
 \usepackage{bigints}
 
+\usepackage{makecell}
+
 \DeclareCiteCommand{\citeauthor}
 {\boolfalse{citetracker}%
 	\boolfalse{pagetracker}%
@@ -48,9 +50,9 @@ hyperref={citecolor=black}
 {\multicitedelim}
 {\usebibmacro{postnote}}
 
-\newcommand{\credit}[2]{{\par\hfill \tiny #1 credit:~\itshape\citeauthor{#2} (\citeyear{#2})}}
-\renewcommand{\cite}[1]{(\citeauthor{#1}, \citeyear{#1})}
-\newcommand{\citefoot}[1]{\citeauthor{#1} (\citeyear{#1})}
+\newcommand{\credit}[2]{{\par\hfill \tiny #1 credit:~\itshape{\color{blue} \citeauthor{#2} (\citeyear{#2})}}}
+\renewcommand{\cite}[1]{({\color{blue} \citeauthor{#1}, \citeyear{#1}})}
+\newcommand{\citefoot}[1]{{\color{blue} \citeauthor{#1} (\citeyear{#1})}}
 \newcommand{\matr}[1]{#1}
 
 \newcommand{\red}[1]{{\color{red} #1}}
@@ -58,11 +60,15 @@ hyperref={citecolor=black}
 \title[ProLLaMA]
 {\href{https://doi.org/10.48550/arXiv.2402.16445}{ProLLaMA: A Protein Large Language Model for Multi-Task Protein Language Processing}}
 %\subtitle{}
-\author[Liuzhenghao Lv et al.]{Lv, Liuzhenghao, Zongying Lin, Hao Li, Yuyang Liu, Jiaxi Cui, Calvin Yu-Chian Chen, Li Yuan, and Yonghong Tian
-\\\vspace{2em}Presenter: Gianmarco Midena}
+\author[Liuzhenghao Lv et al.]{Lv, Liuzhenghao, Zongying Lin, Hao Li, Yuyang Liu, Jiaxi Cui, Calvin Yu-Chian Chen, Li Yuan, and Yonghong Tian}
 %\institute{Aalto University}
-\date[3 July 2024]{Submitted on 26 February 2024 
-\\\vspace{2em}3 July 2024}
+\date{3 July 2024}
+
+\addtobeamertemplate{title page}{}{
+\begin{center}
+Submitted on 26 February 2024
+\\\vspace{1em}Presenter: Gianmarco Midena
+\end{center}}
 
 \begin{document}
 \begin{frame}
@@ -72,6 +78,65 @@ hyperref={citecolor=black}
 %\begin{frame}{Outline}
 %\tableofcontents
 %\end{frame}
+
+\begin{frame}{Limitations in Current LLMs for Protein Language}
+	\begin{itemize}
+		\item Single-task
+		\item Lack Natural Language Capabilities
+		\begin{itemize}
+			\item Protein Language cannot fully represent all components of some tasks (User instruction, expected output)
+		\end{itemize}
+		\item Insufficient Instruction Understanding
+		\item High Training Resource Demands
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{ProLLaMA}
+	\begin{itemize}
+		\item Protein Language Processing
+		\item Training Framework
+		\begin{itemize}
+			\item Any general LLM $\rightarrow$ ProLLM
+			\item Two Stages
+			\item Universal
+			\item Efficient, low Overhead
+			\item Scalable
+		\end{itemize}
+		\item Multi-tasking
+		\begin{itemize}
+			\item Unconditional Protein Sequence Generation
+			\item Controllable Protein Sequence Generation
+			\item Protein Property Prediction
+			\item \dots
+		\end{itemize}
+		\item %Efficient Training: 
+		Low-Rank Adaptation (LoRA)
+		\begin{itemize}
+			\item Less Forgetting
+			\item Less Training Cost
+			\item More Scalability
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Natural Language Need}
+	\begin{itemize}\setlength\itemsep{3em}
+		\item Natural Language $\neq$ Protein Sequences
+		\begin{itemize}\setlength\itemsep{1em}
+			\item Natural language is \underline{complete} for NLP tasks
+			\begin{itemize}
+				\item Natural language can represent all \emph{components} for NLP tasks
+				\\$\cdot$ \emph{components}: input instructions, expected output
+			\end{itemize}
+			\item Protein language is \underline{NOT complete} for PLP tasks
+		\end{itemize}
+		\item Example: protein property prediction task
+		\begin{itemize}
+			\item task instruction: ``Predict the property of this protein: MAFCF...FEV''
+			\item expected output: ``The property is Trx superfamily.''
+		\end{itemize}
+	\end{itemize}
+\end{frame}
 
 \begin{frame}{Multi-task LLMs for Natural vs. Protein Language}
 	\begin{center}
@@ -92,6 +157,21 @@ hyperref={citecolor=black}
 		\includegraphics[scale=0.39]{images/training.pdf}
 	\end{center}
 	\credit{Image}{lv2024prollama}
+\end{frame}
+
+\begin{frame}{Experiment Setup}
+	\begin{center}
+		\begin{tabular}{|c|>{\centering\arraybackslash}p{6em}|>{\centering\arraybackslash}p{6em}|>{\centering\arraybackslash}p{6em}|}\cline{2-4}
+			\multicolumn{1}{c|}{} & Continual Learning & \multicolumn{2}{c|}{Instruction Tuning}\\\hline
+			task & unconditional protein generation & controllable protein generation & protein property prediction \\\hline
+			data source & \multicolumn{2}{c|}{UniRef50} & InterPro \\\hline
+			LoRA rank & 128 & \multicolumn{2}{c|}{64} \\\hline
+			epochs    & 1   & \multicolumn{2}{c|}{2} \\\hline
+			optimizer & \multicolumn{3}{c|}{AdamW} \\\hline
+			scheduler & \multicolumn{3}{c|}{Cosine Annealing with Warmup} \\\hline
+			%peak learning rate & \multicolumn{2}{c|}{0.05} \\\hline
+		\end{tabular}
+	\end{center}
 \end{frame}
 
 \begin{frame}{Evaluation Metrics}
@@ -115,6 +195,9 @@ hyperref={citecolor=black}
 		\item Homologous Probability (\textbf{H-Prob}): probability that a generated protein is homologous to a known one
 		%What does homology mean?
 		\item Sequence Identity (\textbf{Seq-Ident}): sequence similarity between generated sequences and known ones
+		\begin{itemize}
+			\item Low = sequence diversity
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
@@ -128,11 +211,39 @@ hyperref={citecolor=black}
 \begin{frame}{Performance in (Unconditional) Protein Generation}
 	\begin{center}
 		\includegraphics[scale=0.21]{tables/methods_comparison.png}
+		\begin{tabular}{>{\centering\arraybackslash}p{11.7em}|>{\centering\arraybackslash}p{3.1em}>{\centering\arraybackslash}p{2.7em}|>{\centering\arraybackslash}p{2.3em}>{\centering\arraybackslash}p{2.3em}|>{\centering\arraybackslash}p{2.3em}>{\centering\arraybackslash}p{2.3em}}
+		{\scriptsize \makecell{Natural protein \\ \cite{alamdari2023protein}}} & \scalebox{.55}{\underline{68.25$\pm$17.85}} & \scalebox{.55}{3.09$\pm$0.63} & & & & \\\hline
+		\end{tabular}
 	\end{center}
-	\credit{Table}{lv2024prollama}
+	%\credit{Table}{lv2024prollama}
+	\begin{itemize}
+		\item ProLLaMA can generate proteins
+		\begin{itemize}
+			\item Structurally plausible
+			\item Comparable to natural proteins
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 
-\begin{frame}{Controllable Generation on Four Different Instructions}
+\begin{frame}{Quality of Generated Protein w.r.t. Length}%ProLLaMA vs. ESM2 (Baseline) Model}
+%\begin{center}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\includegraphics[scale=0.23]{images/combined_length_plddt_zhexiantu.pdf}
+			\includegraphics[scale=0.23]{images/combined_length_alntmscore_zhexiantu.pdf}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\includegraphics[scale=0.23]{images/combined_length_scperp_zhexiantu.pdf}
+			\begin{itemize}
+				\item ProLLaMA is able to capture long-range dependencies between amino acids
+			\end{itemize}
+		\end{column}
+	\end{columns}
+%\end{center}
+\vspace{-2em}\credit{Image}{lv2024prollama}
+\end{frame}
+
+\begin{frame}{Performance in Controllable Protein Generation}% on Four Different Instructions
 	\begin{center}
 		\includegraphics[scale=0.21]{tables/controlled_generation_comparison.png}
 	\end{center}
@@ -152,22 +263,35 @@ hyperref={citecolor=black}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Quality of Generated Protein w.r.t. Length}%ProLLaMA vs. ESM2 (Baseline) Model}
-	\begin{center}
-		\includegraphics[scale=0.23]{images/combined_length_plddt_zhexiantu.pdf}
-		\includegraphics[scale=0.23]{images/combined_length_scperp_zhexiantu.pdf}
-		\includegraphics[scale=0.23]{images/combined_length_alntmscore_zhexiantu.pdf}
-	\end{center}
-	\vspace{-2em}\credit{Image}{lv2024prollama}
+\begin{frame}{Generated vs. Natural Protein}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\includegraphics[scale=0.7]{images/d.png}
+			\includegraphics[scale=0.7]{images/f.png}'
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\includegraphics[scale=0.7]{images/e.png}
+			\begin{itemize}
+				\item Proteins generated by ProLLaMA are comparable to their
+				natural counterparts in the same superfamily
+			\end{itemize}
+		\end{column}
+	\end{columns}
+	\credit{Image}{lv2024prollama}
 \end{frame}
 
-\begin{frame}{Generated vs. Natural Protein}
+\begin{frame}{Visualization of Controllable Generated vs. Natural Proteins}
 	\begin{center}
-		\includegraphics[scale=0.7]{images/d.png}
-		\includegraphics[scale=0.7]{images/e.png}
-		\includegraphics[scale=0.7]{images/f.png}
+		\includegraphics[trim={0 0 90em 0},clip,scale=0.4]{images/protein_visualization.pdf}
+		\includegraphics[trim={31.5em 0 57.4em 0},clip,scale=0.4]{images/protein_visualization.pdf}
+		\includegraphics[trim={64em 0 30em 0},clip,scale=0.4]{images/protein_visualization.pdf}
+		\includegraphics[trim={92em 0 0 0},clip,scale=0.4]{images/protein_visualization.pdf}
 	\end{center}
-	\credit{Image}{lv2024prollama}
+	\vspace{-1em}\credit{Image}{lv2024prollama}
+	\begin{itemize}
+		\item Blue: generated proteins, yellow: natural proteins
+		\item Similar in structure (function), different in sequence (novel)
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Performance in Protein Property Prediction}
@@ -189,20 +313,6 @@ hyperref={citecolor=black}
 	\credit{Table}{lv2024prollama}
 	\begin{itemize}
 		\item Property = superfamily
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Visualization of Controllable Generated vs. Natural Proteins}
-	\begin{center}
-		\includegraphics[trim={0 0 90em 0},clip,scale=0.4]{images/protein_visualization.pdf}
-		\includegraphics[trim={31.5em 0 57.4em 0},clip,scale=0.4]{images/protein_visualization.pdf}
-		\includegraphics[trim={64em 0 30em 0},clip,scale=0.4]{images/protein_visualization.pdf}
-		\includegraphics[trim={92em 0 0 0},clip,scale=0.4]{images/protein_visualization.pdf}
-	\end{center}
-	\vspace{-1em}\credit{Image}{lv2024prollama}
-	\begin{itemize}
-		\item Blue: generated proteins, yellow: natural proteins
-		\item Similar in structure (function), different in sequence
 	\end{itemize}
 \end{frame}
 
@@ -235,6 +345,9 @@ hyperref={citecolor=black}
 		\begin{itemize}
 			\item Unconditional protein generation
 			\item Controllable protein generation
+			\begin{itemize}
+				\item Generates desired proteins with functions and structures similar to natural proteins, yet with novel sequences.
+			\end{itemize}
 			\item Protein property prediction
 		\end{itemize}
 		\item Exceptional performances
