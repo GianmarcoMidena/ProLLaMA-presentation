@@ -92,25 +92,6 @@ Submitted on 26 February 2024
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Natural Language Need}
-	\begin{itemize}\setlength\itemsep{3em}
-		\item Natural Language $\neq$ Protein Sequences
-		\begin{itemize}\setlength\itemsep{1em}
-			\item Natural language is \underline{complete} for NLP tasks
-			\begin{itemize}
-				\item Natural language can represent all \emph{components} for NLP tasks
-				\\$\cdot$ \emph{components}: input instructions, expected output
-			\end{itemize}
-			\item Protein language is \underline{NOT complete} for PLP tasks
-		\end{itemize}
-		\item Example: protein property prediction task
-		\begin{itemize}
-			\item task instruction: ``Predict the property of this protein: MAFCF...FEV''
-			\item expected output: ``The property is Trx superfamily.''
-		\end{itemize}
-	\end{itemize}
-\end{frame}
-
 \begin{frame}{Multi-task LLMs for Natural vs. Protein Language}
 	\begin{center}
 		\includegraphics[scale=0.5]{images/multitask_LLMs_NLP_vs_PLP.pdf}
@@ -261,6 +242,8 @@ Submitted on 26 February 2024
 	\end{itemize}
 \end{frame}
 
+\input{sections/natural_language_ability.tex}
+
 \input{sections/summary.tex}
 
 \begin{frame}{Sequences Generated w/o Instructions - Distributions}
@@ -271,16 +254,6 @@ Submitted on 26 February 2024
 	\credit{Image}{lv2024prollama}
 	\begin{itemize}
 		\item 1 spot = 1 sequence
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Natural Language Ability}
-	\begin{center}
-		\includegraphics[scale=0.21]{tables/natural_language_ability_comparison.png}
-	\end{center}
-	\credit{Table}{lv2024prollama}
-	\begin{itemize}
-		\item Sentence generation on Wikipedia text
 	\end{itemize}
 \end{frame}
 
