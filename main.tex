@@ -109,20 +109,6 @@ Submitted on 26 February 2024
 	\credit{Image}{lv2024prollama}
 \end{frame}
 
-\begin{frame}{Experiment Setup}
-	\begin{center}
-		\begin{tabular}{|c|>{\centering\arraybackslash}p{6em}|>{\centering\arraybackslash}p{6em}|>{\centering\arraybackslash}p{6em}|}\cline{2-4}
-			\multicolumn{1}{c|}{} & Continual Learning & \multicolumn{2}{c|}{Instruction Tuning}\\\hline
-			task & unconditional protein generation & controllable protein generation & protein property prediction \\\hline
-			data source & \multicolumn{2}{c|}{UniRef50} & InterPro \\\hline
-			LoRA rank & 128 & \multicolumn{2}{c|}{64} \\\hline
-			epochs    & 1   & \multicolumn{2}{c|}{2} \\\hline
-			optimizer & \multicolumn{3}{c|}{AdamW} \\\hline
-			scheduler & \multicolumn{3}{c|}{Cosine Annealing with Warmup} \\\hline
-			%peak learning rate & \multicolumn{2}{c|}{0.05} \\\hline
-		\end{tabular}
-	\end{center}
-\end{frame}
 
 \input{sections/evaluation_metrics.tex}
 
@@ -241,6 +227,26 @@ Submitted on 26 February 2024
 \input{sections/natural_language_ability.tex}
 
 \input{sections/summary.tex}
+
+\begin{frame}{Experiment Setup}
+	\begin{center}
+		\begin{tabular}{|>{\centering\arraybackslash}p{11em}|>{\centering\arraybackslash}p{6em}|>{\centering\arraybackslash}p{6em}|}\hline
+			Learning Stage & Continual Learning & Instruction Tuning\\\hline
+			LoRA rank & 128 & 64 \\\hline
+			epochs    & 1   & 2 \\\hline
+			max sequence length (block size) & 2048 & 256 \\\hline
+			batch size per GPU & 4 & 144 \\\hline
+			gradient accumulation step count & 8 & 4 \\\hline
+			scheduler warm-up ratio & 0.05 & 0.03 \\\hline
+			optimizer & \multicolumn{2}{c|}{AdamW} \\\hline
+			weight decay & \multicolumn{2}{c|}{0.01} \\\hline
+			scheduler & \multicolumn{2}{c|}{cosine annealing with warm-up} \\\hline
+			Zero Redundancy Optimizer (ZeRO) & \multicolumn{2}{c|}{stage 2, w/o offload} \\\hline
+			data type & \multicolumn{2}{c|}{bfloat16} \\\hline
+			%peak learning rate & \multicolumn{2}{c|}{0.05} \\\hline
+		\end{tabular}
+	\end{center}
+\end{frame}
 
 \begin{frame}{Sequences Generated w/o Instructions - Distributions}
 	\begin{center}
