@@ -174,32 +174,7 @@ Submitted on 26 February 2024
 	\end{center}
 \end{frame}
 
-\begin{frame}{Evaluation Metrics}
-	\begin{itemize}
-		\item structural plausibility of a sequence
-		\begin{itemize}
-			\item \textbf{pLDDT}: Local Distance Difference Test~\cite{jumper2021highly}
-			\begin{itemize}
-				\item \red{unreliable with Intrinsically Disordered Regions (IDRs)}
-			\end{itemize}
-			\item \textbf{SC-Perp}: Self-Consistency Perplexity~\cite{alamdari2023protein}
-		\end{itemize}
-		\item structural similarity between generated and known sequences
-		\begin{itemize}
-			\item \textbf{TM-score}: Template Modeling score~\cite{zhang2004scoring}
-			\item \textbf{RMSD}:  Root-Mean-Square Deviation
-			\begin{itemize}
-				\item atomic distance
-			\end{itemize}
-		\end{itemize}
-		\item Homologous Probability (\textbf{H-Prob}): probability that a generated protein is homologous to a known one
-		%What does homology mean?
-		\item Sequence Identity (\textbf{Seq-Ident}): sequence similarity between generated sequences and known ones
-		\begin{itemize}
-			\item Low = sequence diversity
-		\end{itemize}
-	\end{itemize}
-\end{frame}
+\input{sections/evaluation_metrics.tex}
 
 \begin{frame}{Reference Protein Databases}
 	\begin{itemize}

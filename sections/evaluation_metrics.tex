@@ -1,0 +1,44 @@
+\begin{frame}[shrink=10]{Evaluation Metrics - Protein Generation}
+	\begin{itemize}\setlength\itemsep{2em}
+		\item structural plausibility of a protein
+		\begin{itemize}
+			\item \textbf{pLDDT}: Local Distance Difference Test~\cite{jumper2021highly}
+			\begin{itemize}
+				\item \red{Unreliable with Intrinsically Disordered Regions (IDRs)}
+				\item Tool: OmegaFold
+			\end{itemize}
+			\item \textbf{SC-Perp}: Self-Consistency Perplexity~\cite{alamdari2023protein}
+			\begin{itemize}
+				\item Tool: OmegaFold, ProteinMPNN
+			\end{itemize}
+		\end{itemize}
+		\item structural similarity between generated and known proteins
+		\begin{itemize}
+			\item \textbf{TM-score}: Template Modeling score~\cite{zhang2004scoring}
+			\item \textbf{RMSD}:  Root-Mean-Square Deviation
+			\begin{itemize}
+				\item Atomic distance
+			\end{itemize}
+			\item Tool: Foldseek
+			\item Reference Protein Databases: AFDB, PDB
+		\end{itemize}
+		\item sequence similarity between generated and known proteins
+		\begin{itemize}
+			\item \textbf{Seq-Ident}: Sequence Identity
+			\item Low = sequence diversity
+			\item Tool: Foldseek
+			\item Reference Protein Databases: AFDB, PDB
+		\end{itemize}
+		\item homology between generated and known proteins
+		\begin{itemize}
+			\item \textbf{H-Prob}: Homologous Probability
+			\begin{itemize}
+				\item Probability that a generated protein is homologous to a known one
+			\end{itemize}
+			\item Homologous proteins have a common evolutionary origin, shared ancestry
+			\item Tool: Foldseek
+			\item Reference Protein Databases: AFDB, PDB
+		\end{itemize}
+		%What does homology mean?
+	\end{itemize}
+\end{frame}
