@@ -51,6 +51,7 @@ hyperref={citecolor=blue}
 {\usebibmacro{postnote}}
 
 \newcommand{\credit}[2]{{\par\hfill \tiny #1 credit:~\itshape{\color{blue} \citeauthor{#2} (\citeyear{#2})}}}
+\newcommand{\crediturl}[2]{{\par\hfill \tiny #1 credit:~\itshape{\color{blue} \url{#2}}}}
 \renewcommand{\cite}[1]{({\color{blue} \citeauthor{#1}, \citeyear{#1}})}
 \newcommand{\citefoot}[1]{{\color{blue} \citeauthor{#1} (\citeyear{#1})}}
 \newcommand{\matr}[1]{#1}
@@ -175,6 +176,8 @@ Submitted on 26 February 2024
 \end{frame}
 
 \input{sections/evaluation_metrics.tex}
+
+\input{sections/protein_structure_levels.tex}
 
 \begin{frame}{Reference Protein Databases}
 	\begin{itemize}
