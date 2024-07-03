@@ -219,8 +219,16 @@ Submitted on 26 February 2024
 		\end{tabular}
 	\end{center}
 	\credit{Table}{lv2024prollama}
+	\vspace{-1em}
 	\begin{itemize}
-		\item Property = superfamily
+		\item 10k test examples
+		\item Accuracy
+		\begin{equation}
+			\frac{\sum_{i=1}^N|Y_i \cap \hat{Y_i}|}{\sum_{i=1}^N|\hat{Y_i}|}
+		\end{equation}
+		\begin{itemize}
+			\item $Y_i$, $\hat{Y_i}$: true and predicted property (superfamily) sets
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
