@@ -1,0 +1,38 @@
+\begin{frame}{Data Sources - Learning}
+	\begin{itemize}\setlength\itemsep{3em}
+		\item UniRef50: UniProt Reference Cluster 50~\cite{suzek2015uniref}
+		\begin{itemize}
+			\item Protein sequences
+			\item Size: $>$10M
+			\item Learning stages: continual learning, instruction tuning
+			\item Tasks: unconditional and controllable protein generation
+			\item sources: UniProtKB, UniParc
+		\end{itemize}
+		\item InterPro~\cite{paysan2023interpro}
+		\begin{itemize}
+			\item Functional analysis of proteins, classification into families, prediction of domains and important sites
+			\item Protein property texts
+			\item Size: $>$40k (entries), $>$400M (protein sequences)
+			\item Learning stage: instruction tuning
+			\item Task: protein property prediction
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Data Sources - Reference protein databases}
+	\begin{itemize}\setlength\itemsep{3em}
+		%\item Reference protein databases
+		%\begin{itemize}
+		\item PDB: Protein Data Bank~\cite{berman2002protein}
+		\begin{itemize}
+			\item Size: $>$200k
+			\item Evaluation Metrics: TM-score, RMSD, H-Prob, and Seq-Ident
+		\end{itemize}
+		\item AFDB: AlphaFold Protein Structure Database~\cite{varadi2022alphafold}
+		\begin{itemize}
+			\item Size: $>$200M
+			\item Evaluation Metrics: TM-score, RMSD, H-Prob, and Seq-Ident
+		\end{itemize}
+		%\end{itemize}
+	\end{itemize}
+\end{frame}
