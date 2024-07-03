@@ -92,34 +92,6 @@ Submitted on 26 February 2024
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{ProLLaMA}
-	\begin{itemize}
-		\item Protein Language Processing
-		\item Training Framework
-		\begin{itemize}
-			\item Any general LLM $\rightarrow$ ProLLM
-			\item Two Stages
-			\item Universal
-			\item Efficient, low Overhead
-			\item Scalable
-		\end{itemize}
-		\item Multi-tasking
-		\begin{itemize}
-			\item Unconditional Protein Sequence Generation
-			\item Controllable Protein Sequence Generation
-			\item Protein Property Prediction
-			\item \dots
-		\end{itemize}
-		\item %Efficient Training: 
-		Low-Rank Adaptation (LoRA)
-		\begin{itemize}
-			\item Less Forgetting
-			\item Less Training Cost
-			\item More Scalability
-		\end{itemize}
-	\end{itemize}
-\end{frame}
-
 \begin{frame}{Natural Language Need}
 	\begin{itemize}\setlength\itemsep{3em}
 		\item Natural Language $\neq$ Protein Sequences
@@ -289,6 +261,8 @@ Submitted on 26 February 2024
 	\end{itemize}
 \end{frame}
 
+\input{sections/summary.tex}
+
 \begin{frame}{Sequences Generated w/o Instructions - Distributions}
 	\begin{center}
 		\includegraphics[scale=0.35]{images/plddt_scperp.pdf}
@@ -307,23 +281,6 @@ Submitted on 26 February 2024
 	\credit{Table}{lv2024prollama}
 	\begin{itemize}
 		\item Sentence generation on Wikipedia text
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Summary}
-	\begin{itemize}
-		\item Efficient training framework
-		\item Can transform any general LLM into a multi-task ProLLM
-		\item Versatility
-		\begin{itemize}
-			\item Unconditional protein generation
-			\item Controllable protein generation
-			\begin{itemize}
-				\item Generates desired proteins with functions and structures similar to natural proteins, yet with novel sequences.
-			\end{itemize}
-			\item Protein property prediction
-		\end{itemize}
-		\item Exceptional performances
 	\end{itemize}
 \end{frame}
 
