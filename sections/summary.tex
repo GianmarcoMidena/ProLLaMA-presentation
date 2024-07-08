@@ -1,43 +1,23 @@
 \begin{frame}{Summary}
-	\begin{itemize}
-		\item Protein Language Processing
-		\item Training Framework
-		\begin{itemize}
-			\item Any general LLM $\rightarrow$ ProLLM
-			\item Two or More Stages
-			\item Universal
-			\item Efficient, low Overhead
-			\item Scalable
+	\begin{itemize}\setlength\itemsep{1em}
+			\item Efficient training framework
+			\item Transform any general LLM into multi-task ProLLM
+			\item Versatility
+			\begin{itemize}
+					\item (Unconditional) protein generation
+					\item Controllable protein generation
+					\begin{itemize}
+							\item desired functions
+							\item structurally similar to natural proteins 
+							\item novel sequences
+						\end{itemize}
+					\item Protein property prediction
+				\end{itemize}
+			\item Exceptional performances
+			\begin{itemize}
+				\item outperforms current ProLLMs and other models for unconditional protein generation
+				\item based on textual description of desired protein functionalities, generates novel proteins with functionalities as competent as natural proteins
+				\item 72\% average test accuracy in protein property prediction.
+			\end{itemize}
 		\end{itemize}
-		\item Multi-tasking
-		\begin{itemize}
-			\item Unconditional Protein Sequence Generation
-			\item Controllable Protein Sequence Generation
-			\item Protein Property Prediction
-			\item \dots
-		\end{itemize}
-		\item %Efficient Training: 
-		Low-Rank Adaptation (LoRA)
-		\begin{itemize}
-			\item Less Forgetting
-			\item Less Training Cost
-			\item More Scalability
-		\end{itemize}
-	\end{itemize}
 \end{frame}
-%\begin{frame}{Summary}
-%	\begin{itemize}\setlength\itemsep{3em}
-	%		\item Efficient training framework
-	%		\item Can transform any general LLM into a multi-task ProLLM
-	%		\item Versatility
-	%		\begin{itemize}
-		%			\item Unconditional protein generation
-		%			\item Controllable protein generation
-		%			\begin{itemize}
-			%				\item Generates desired proteins with functions and structures similar to natural proteins, yet with novel sequences.
-			%			\end{itemize}
-		%			\item Protein property prediction
-		%		\end{itemize}
-	%		\item Exceptional performances
-	%	\end{itemize}
-%\end{frame}
