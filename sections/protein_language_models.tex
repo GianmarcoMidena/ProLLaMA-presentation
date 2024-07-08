@@ -1,0 +1,43 @@
+\begin{frame}[shrink=10]{Protein Language Models (PLMs)}
+	\begin{itemize}\setlength\itemsep{1.5em}
+		%\item ProLLMs $\subset$ PLMs
+		\item[a.] Protein Large Language Model (ProLLM)
+		\begin{itemize}
+			\item Decoder-only
+			\item Casual Language Modelling (CLM)
+			\item Similar to general LLMs
+			\item Tasks
+			\begin{itemize}
+				\item De novo protein sequence generation
+				\\Models: DARK~(\cite{moffat2022design}), ProGPT2~(\cite{ferruz2022protgpt2}), ProGen~(\cite{madani2023large}), ProgGen2~(\cite{nijkamp2023progen2})
+				\item Fitness prediction~(\cite{notin2022tranception})
+			\end{itemize}
+		\end{itemize}
+		\item[b.] 
+		\begin{itemize}
+			\item Encoder-only
+			\item Masked Language Modelling (MLM)
+			\item Application: protein representation learning
+			\item Downstream task: property prediction~(\cite{xu2023protst})
+			\item Models
+			\begin{itemize}
+				\item ESM-1b~(\cite{rives2021biological})
+				\item ProteinBERT~(\cite{brandes2022proteinbert})
+				\item ESM-2~(\cite{lin2023evolutionary})
+			\end{itemize}
+		\end{itemize}
+		\item[c.] 
+		\begin{itemize}
+			\item Encoder-decoder
+			\item Sequence-to-Sequence (Seq2Seq)
+			\item Models
+			\begin{itemize}
+				\item LM-DESIGN~(\cite{zheng2023structure})
+				\\Tasks: De novo protein sequence generation
+				\item ProLLaMA (this)
+				\\Tasks: all the above
+			\end{itemize}
+		\end{itemize}
+		\item Other models: \cite{yang2018learned}, UniRep~(\cite{alley2019unified}), MSA Transformer~(\cite{rao2021msa}), ProtTrans~(\cite{elnaggar2021prottrans})
+	\end{itemize}
+\end{frame}
