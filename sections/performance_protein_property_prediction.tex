@@ -1,0 +1,38 @@
+\begin{frame}{Performance in Protein Property Prediction}
+%	\begin{columns}
+%		\begin{column}{0.5\textwidth}
+%			\begin{center}
+%				\begin{tabular}{cc}\hline
+%					Property & Accuracy (\%) \\\hline
+%					OBFD     & 100 \\
+%					UPF0145  & 100 \\
+%					NACD     & 100 \\
+%					U3S      & 100 \\
+%					CCHC     & 95.24  \\
+%					Kazal    & 100 \\
+%					SAM-MT   & 93.67  \\
+%					TPHD     & 90.84  \\
+%					Trx      & 94.17  \\
+%					CheY     & 100 \\\hline
+%				\end{tabular}
+%			\end{center}
+%			\credit{Table}{lv2024prollama}
+%		\end{column}
+%		\begin{column}{0.5\textwidth}
+		\begin{itemize}
+			\item 72\% average test accuracy
+			\item $\sim$100\% test accuracy in many superfamilies
+			\item 10k test examples
+			\item One protein may belong to multiple superfamilies.
+			\item (Multi-label) Accuracy Metric
+			\begin{equation}
+				\frac{\sum_{i=1}^N|Y_i \cap \hat{Y_i}|}{\sum_{i=1}^N|\hat{Y_i}|}
+			\end{equation}
+			\begin{itemize}
+				\item $Y_i$, $\hat{Y_i}$: true and predicted property (superfamily) sets
+			\end{itemize}
+			\item ProLLaMA outputs a full textual description of the result.
+		\end{itemize}
+%		\end{column}
+%	\end{columns}
+\end{frame}
