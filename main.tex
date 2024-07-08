@@ -148,6 +148,33 @@ Submitted on 26 February 2024
 \end{itemize}
 \end{frame}
 
+\begin{frame}{ProLLaMA}
+	\begin{itemize}
+		\item Protein Language Processing
+		\item Training Framework
+		\begin{itemize}
+			\item Any general LLM $\rightarrow$ ProLLM
+			\item Two or More Stages
+			\item Universal
+			\item Efficient, low Overhead
+			\item Scalable
+		\end{itemize}
+		\item Multi-tasking
+		\begin{itemize}
+			\item Unconditional Protein Sequence Generation
+			\item Controllable Protein Sequence Generation
+			\item Protein Property Prediction
+			\item \dots
+		\end{itemize}
+		\item Language: Protein + Natural
+		\item %Efficient Training: 
+		LoRA: Low-Rank Adaptation~(\cite{hu2021lora})
+		\begin{itemize}
+			\item prevents catastrophic forgetting of natural language knowledge
+			\item more scalability
+			\item less training cost
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 
 \input{sections/model.tex}
