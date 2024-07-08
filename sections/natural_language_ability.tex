@@ -1,4 +1,5 @@
-\begin{frame}{Natural Language Need}
+\section{Natural Language Ability}
+\begin{frame}{Natural Language Ability - Need}
 	\begin{itemize}\setlength\itemsep{3em}
 		\item Natural Language $\neq$ Protein Sequences
 		\begin{itemize}\setlength\itemsep{1em}
@@ -14,15 +15,22 @@
 			\item task instruction: ``Predict the property of this protein: MAFCF...FEV''
 			\item expected output: ``The property is Trx superfamily.''
 		\end{itemize}
+		\item To integrate protein function and property information
+		\begin{itemize}
+			\item protein sequences include almost co-evolutionary information
+			\item \cite{xu2023protst,wang2023instructprotein}
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Natural Language Ability}
+\begin{frame}{Natural Language Ability - Evaluation}
 	\begin{center}
 		\includegraphics[scale=0.21]{tables/natural_language_ability_comparison.png}
 	\end{center}
 	\credit{Table}{lv2024prollama}
 	\begin{itemize}
 		\item Sentence generation on Wikipedia text
+		\item ProGen2's vocabulary only includes uppercase letters representing amino acids.
+		\item ProLLaMA has natural language abilities, but more limited than LLaMA2.
 	\end{itemize}
 \end{frame}
